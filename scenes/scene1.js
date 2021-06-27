@@ -9,13 +9,13 @@ class scene1 extends Phaser.Scene {
     this.load.image("botonback", "assets/boton-1.png");
     this.load.image("nivsup", "assets/nivsuperado.png");
     this.load.image("btnsup", "assets/Btnsignivel.png");
-    this.load.image("imginstrucciones","assets/instrucciones.png");
+    this.load.image("imginstrucciones","./assets/instrucciones.png");
     this.load.image("btncomen","assets/btncomenzar.png");
     this.load.image("nivperd","assets/nivfallido.png");
     this.load.image("juegocomp","assets/juegosuperado.png");
     this.load.image("btnmenu","assets/btnmenu.png");
     this.load.image("btnreset","assets/BtnReiniciarlvl.png");
-    this.load.image("fondoC", "assets/fondomenosbrillo.png");
+    this.load.image("fondoC", "./assets/fondomenosbrillo.png");
     this.load.image("creditoss", 'assets/creditos.png');
     this.load.image('start', 'assets/botonjugar.png');
     this.load.image("credboton", "assets/botoncreditos.png");
