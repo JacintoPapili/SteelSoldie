@@ -31,6 +31,7 @@ var cursors;
 var creditos;
 var medallas;
 var vidas;
+var powerup;
 var background;
 var WorldWalls;
 var enemigos;
@@ -65,8 +66,8 @@ var Bala2;
 var balas3;
 var lastFired3= 0;
 var Bala3;
-var v= Phaser.Math.Between(4,12);
-
+var v= Phaser.Math.Between(4,8);
+var v1= Phaser.Math.Between(9,12);
 
 var musicamen;
 var musica;

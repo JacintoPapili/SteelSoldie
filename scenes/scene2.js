@@ -8,7 +8,7 @@ class scene2 extends Phaser.Scene {
 
     create ()
     {
-     
+        game.scene.pause("nivel2")
         musicamen.stop();
        
       //  fondo
@@ -121,10 +121,8 @@ class scene2 extends Phaser.Scene {
             
         });
         
-      
         
-        //misiles
-        misiles=this.physics.add.group();
+     
        
 
         // config personaje
@@ -181,7 +179,7 @@ class scene2 extends Phaser.Scene {
         //colisiones con muros
         this.physics.add.collider(player,WorldWalls);
         this.physics.add.collider(enemigos,WorldWalls);
-        this.physics.add.collider(misiles,WorldWalls);
+      
     
         //agarrar medallas,informacion y vidas
         this.physics.add.overlap(player, medallas, this.juntarmedallas, null, this);
@@ -312,14 +310,16 @@ class scene2 extends Phaser.Scene {
         this.physics.add.collider(enemigos,platforms);
         this.physics.add.collider(medallas,platforms);
         this.physics.add.collider(vidas,platforms);
-        this.physics.add.collider(informacion,platforms);
-        this.physics.add.collider(platforms,misiles,this.destruccionmisil,this.plataformarota,null,this);
     
-        this.physics.add.collider(piso,misiles,this.destruccionmisil,null,this);
+        this.physics.add.collider(informacion,platforms);
+       
+    
+     
         this.physics.add.collider(player, piso);
         this.physics.add.collider(enemigos,piso);
         this.physics.add.collider(medallas,piso);
-        this.physics.add.collider(vidas,piso)
+        this.physics.add.collider(vidas,piso);
+       
         this.physics.add.collider(informacion,piso);
 
         //bala desaparece al tocar plataformas o piso
@@ -329,8 +329,7 @@ class scene2 extends Phaser.Scene {
         this.physics.add.collider(balas2, piso, this.destruirbala2piso, null, this);
         this.physics.add.collider(balas3, platforms, this.destruirBala3, null, this);
         this.physics.add.collider(balas3, piso, this.destruirbala3piso, null, this);
-        //misil mata pj
-        this.physics.add.collider(player, misiles, this.hitmisil, null, this);
+       
         //bala mara pj
         this.physics.add.collider(player,balas3,this.hitbala,null,this);
         //enemigo muere
@@ -343,7 +342,6 @@ class scene2 extends Phaser.Scene {
         infovalor=0;
         gameOver=false;
         gameWin=false
-        this.respawn=0;
         this.respawn1=0;
         
 
@@ -426,10 +424,7 @@ class scene2 extends Phaser.Scene {
             }
         });
 
-     if (time > this.respawn) {
-        this.nuevomisil();
-        this.respawn += 8000;
-    }
+     
 
     if(infovalor==v) {
         this.gameWin()
@@ -481,7 +476,8 @@ class scene2 extends Phaser.Scene {
 
          this.vidamax();
     }   
-    
+   
+   
     vidamax(){
         if(vidavalor > 3){
             vidavalor = 3;
@@ -491,26 +487,9 @@ class scene2 extends Phaser.Scene {
         
     }
 
-    nuevomisil(){
-        var x= Phaser.Math.Between(200,2500);
-        var misil = misiles.create(x, 16, 'misil');
-            misil.setBounce(1);
-            misil.setCollideWorldBounds(true);
-            misil.setVelocity(Phaser.Math.Between(-200, 200), 20);
-            misil.allowGravity = false;
-            misil.setScale(0.6)
+  
 
-    }
   
-  
-    hitmisil(player,misil){
-        misil.disableBody(true, true);
-        vidavalor-=vidavalor
-        vidastext.setText('Vidas: ' + vidavalor + "/3");
-        vidastext.scrollFactorX= 0;
-        //this.gameOver()
-        
-    }
 
     hitbala(player,bala3){
         sfxdaño.play();
@@ -522,12 +501,7 @@ class scene2 extends Phaser.Scene {
     }
     
 
-    destruccionmisil(platforms,misiles){
-        misiles.disableBody(true,true);
-    };
-    plataformarota(platforms,misiles){
-        platforms.disableBody(true,true);
-    }
+   
 
     destruirBala(bala, platforms)
     {

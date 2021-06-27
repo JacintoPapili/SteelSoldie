@@ -5,27 +5,28 @@ class scene1 extends Phaser.Scene {
   preload ()
   { 
     this.load.image("wall", "assets/Wall.png");
-    this.load.image("fondomenu", "assets/fondo.png");
+    this.load.image("fondomenu", "./assets/fondo.png");
     this.load.image("botonback", "assets/boton-1.png");
     this.load.image("nivsup", "assets/nivsuperado.png");
     this.load.image("btnsup", "assets/Btnsignivel.png");
     this.load.image("imginstrucciones","./assets/instrucciones.png");
-    this.load.image("btncomen","assets/btncomenzar.png");
-    this.load.image("nivperd","assets/nivfallido.png");
-    this.load.image("juegocomp","assets/juegosuperado.png");
-    this.load.image("btnmenu","assets/btnmenu.png");
-    this.load.image("btnreset","assets/BtnReiniciarlvl.png");
+    this.load.image("btncomen","./assets/btncomenzar.png");
+    this.load.image("nivperd","./assets/nivfallido.png");
+    this.load.image("juegocomp","./assets/juegosuperado.png");
+    this.load.image("btnmenu","./assets/btnmenu.png");
+    this.load.image("btnreset","./assets/BtnReiniciarlvl.png");
     this.load.image("fondoC", "./assets/fondomenosbrillo.png");
-    this.load.image("creditoss", 'assets/creditos.png');
-    this.load.image('start', 'assets/botonjugar.png');
-    this.load.image("credboton", "assets/botoncreditos.png");
-    this.load.image('logo', 'assets/logo.png');
-    this.load.image('sky', 'assets/sky.png');
-    this.load.image('sky2', 'assets/sky2.png');
+    this.load.image("creditoss", './assets/creditos.png');
+    this.load.image('start', './assets/botonjugar.png');
+    this.load.image("credboton", "./assets/botoncreditos.png");
+    this.load.image('logo', './assets/logo.png');
+    this.load.image('sky', './assets/sky.png');
+    this.load.image('sky2', './assets/sky2.png');
     this.load.image('piso', 'assets/tierra.png');
     this.load.image("plataforma1", "assets/plataforma1.png");
     this.load.image("plataforma1.1", "assets/plataforma1.1.png");
-    this.load.image("plataforma2", "assets/pla")
+    this.load.image("plataforma2", "assets/plataforma2.png");
+    this.load.image("reloj","assets/reloj.png");
     this.load.image("medallas", "assets/medalla-1.png.png");
     this.load.image("enemigo", "assets/enemigos.png");
     this.load.image("misil", "assets/misil-1.png.png");

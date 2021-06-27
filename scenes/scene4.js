@@ -9,12 +9,12 @@ class scene4 extends Phaser.Scene {
     create ()
     {
      
+        musicamen.stop();
        
       //  fondo
       background=this.add.image(0, 0, 'sky2').setScale(0.2,0.25);
       background.setOrigin(0,0);
       background.setScrollFactor(1);
-
 
 
        //grupo de plataformas
@@ -25,36 +25,40 @@ class scene4 extends Phaser.Scene {
         piso.create(640, 700, 'piso').refreshBody();
 
         //  plataformas
-        platforms.create(600, 450, "plataforma1");
-        platforms.create(200, 530, "plataforma1");
-        platforms.create(400, 530, 'plataforma1.1');
-        platforms.create(750, 400, 'plataforma1');
-        platforms.create(950, 430, 'plataforma1.1');
-        platforms.create(1200, 425, 'plataforma1');
-        platforms.create(1290, 460, 'plataforma1.1');
-        platforms.create(1425, 530, "plataforma1");
-        platforms.create(1090, 260, 'plataforma1.1');
-        platforms.create(980, 260, 'plataforma1');
-        platforms.create(1120, 200, 'plataforma1.1');
-        platforms.create(1290, 260, 'plataforma1');
-        platforms.create(900, 360, 'plataforma1.1');
-        platforms.create(1300, 150, 'plataforma1');
-        platforms.create(600, 190, 'plataforma1');
-        platforms.create(800, 160, 'plataforma1');
-        platforms.create(1450,400, 'plataforma1.1');
-        platforms.create(1550,300, 'plataforma1');
-        platforms.create(1600,150, 'plataforma1');
-        platforms.create(1700,300, 'plataforma1.1');
-        platforms.create(1750,250, 'plataforma1.1');
-        platforms.create(1650,450, 'plataforma1');
-        platforms.create(1882,225, 'plataforma1');
-        platforms.create(1850,400, 'plataforma1.1');
-        platforms.create(2025,450, 'plataforma1');
-        platforms.create(2050,225, 'plataforma1');
-        platforms.create(2200,530, 'plataforma1');
-        platforms.create(2285,275, 'plataforma1.1');
-        platforms.create(2170,370, 'plataforma1.1');
-        platforms.create(2330,415, 'plataforma1');
+        platforms.create(600, 450, "plataforma2");
+        platforms.create(200, 530, "plataforma2");
+        platforms.create(400, 530, 'plataforma2');
+        platforms.create(750, 400, 'plataforma2');
+        platforms.create(950, 430, 'plataforma2');
+        platforms.create(1200, 425, 'plataforma2');
+        platforms.create(1290, 460, 'plataforma2');
+        platforms.create(1425, 530, "plataforma2");
+        platforms.create(1090, 260, 'plataforma2');
+        platforms.create(980, 260, 'plataforma2');
+        platforms.create(1120, 200, 'plataforma2');
+        platforms.create(1290, 260, 'plataforma2');
+        platforms.create(900, 360, 'plataforma2');
+        platforms.create(1300, 150, 'plataforma2');
+        platforms.create(600, 190, 'plataforma2');
+        platforms.create(800, 160, 'plataforma2');
+        platforms.create(1450,400, 'plataforma2');
+        platforms.create(1550,300, 'plataforma2');
+        platforms.create(1600,150, 'plataforma2');
+        platforms.create(1700,300, 'plataforma2');
+        platforms.create(1750,250, 'plataforma2');
+        platforms.create(1650,450, 'plataforma2');
+        platforms.create(1882,225, 'plataforma2');
+        platforms.create(1850,400, 'plataforma2');
+        platforms.create(2025,450, 'plataforma2');
+        platforms.create(2050,225, 'plataforma2');
+        platforms.create(2200,530, 'plataforma2');
+        platforms.create(2285,275, 'plataforma2');
+        platforms.create(2170,370, 'plataforma2');
+        platforms.create(2330,415, 'plataforma2');
+
+        //Musica y fx
+
+        this.musicaysfx();
 
        //medallas
 
@@ -62,7 +66,7 @@ class scene4 extends Phaser.Scene {
        medallas= this.physics.add.group({
             key: "medallas",
             repeat: Phaser.Math.Between(1,8), 
-            setXY: { x: Phaser.Math.Between(200,2400), y: 6, stepX:Phaser.Math.Between(300,1400)}
+            setXY: { x: 400, y: 6, stepX:Phaser.Math.Between(300,2400)}
 
        })
        medallas.children.iterate(function (child) {
@@ -70,7 +74,7 @@ class scene4 extends Phaser.Scene {
             var y= Phaser.Math.Between(0,600)
       
        
-           child.setCollideWorldBounds(true)
+            child.setCollideWorldBounds(true)
             child.setBounce(0.1)
             child.allowGravity= true;
         
@@ -84,13 +88,14 @@ class scene4 extends Phaser.Scene {
         informacion=this.physics.add.group({
             
             key:"info",
-            repeat:v-1,
-            setXY:{x:Phaser.Math.Between(200,2500),y:6,stepX:Phaser.Math.Between(300,1400)}
-            
+            repeat: v1-1,
+            setXY:{ x:200, y:6, stepX:150}
+          
         })
         informacion.children.iterate(function (child) {
         
-           child.setCollideWorldBounds(true)
+
+            child.setCollideWorldBounds(true)
             child.setBounce(0.1)
             child.allowGravity= true;
         
@@ -98,7 +103,41 @@ class scene4 extends Phaser.Scene {
             child.setScale(0.1,0.1)
 
         });
-
+        //vidas
+        vidas=this.physics.add.group({
+            
+            key:"vida",
+            repeat:1,
+            setXY:{ x:500, y:6, stepX:Phaser.Math.Between(300,2400)}
+            
+        })
+        vidas.children.iterate(function (child) {
+        
+            child.setCollideWorldBounds(true)
+            child.setBounce(0.1)
+            child.allowGravity= true;
+        
+            child.setScale(0.4,0.4)
+            
+        });
+        
+        //poweup
+        powerup=this.physics.add.group({
+            
+            key:"reloj",
+            repeat:1,
+            setXY:{ x:500, y:6, stepX:400}
+            
+        })
+        powerup.children.iterate(function (child) {
+        
+            child.setCollideWorldBounds(true)
+            child.setBounce(0.1)
+            child.allowGravity= true;
+        
+            child.setScale(0.4,0.4)
+            
+        });
         
       
         
@@ -116,8 +155,8 @@ class scene4 extends Phaser.Scene {
         //enemigos
         enemigos = this.physics.add.group({
             key: 'enemigo',
-            repeat: 10,
-            setXY: { x: 500, y: 0, stepX:Phaser.Math.Between(230,260)}
+            repeat: 9,
+            setXY: { x: 500, y: 0, stepX:Phaser.Math.Between(220,250)}
           });
   
           enemigos.children.iterate(function (child) {
@@ -127,7 +166,7 @@ class scene4 extends Phaser.Scene {
             child.setScale(1.7,1.7);
         });
         
-   
+        
 
             
 
@@ -162,23 +201,22 @@ class scene4 extends Phaser.Scene {
         this.physics.add.collider(enemigos,WorldWalls);
         this.physics.add.collider(misiles,WorldWalls);
     
-        //agarrar medallas  e informacion
+        //agarrar medallas,informacion, vidas y poweup
         this.physics.add.overlap(player, medallas, this.juntarmedallas, null, this);
         this.physics.add.overlap(player, informacion, this.juntarinfo, null, this);
-       
-     
-    
-        vidavalor=3;
+        this.physics.add.overlap(player, vidas, this.juntarvida, null, this);
+        this.physics.add.overlap(player, powerup, this.juntarpower, null, this);
+
+        tiempoini= 30; 
+        vidavalor= 3;
         //textos
-        infotext=this.add.text(600, 5, 'Informacion: 0'+ "/" + v, { fontFamily: 'MinimalFont5x7',fontSize: '30px', fill: '#EBED24' });
+        infotext=this.add.text(600, 5, 'Información: 0'+ "/" + v1, { fontFamily: 'MinimalFont5x7',fontSize: '30px', fill: '#EBED24' });
         infotext.scrollFactorX = 0;
         scoreText = this.add.text(300, 5, 'Puntaje: 0', { fontFamily: 'MinimalFont5x7',fontSize: '30px', fill: '#EBED24' });
         scoreText.scrollFactorX = 0;
         vidastext= this.add.text(900, 5, 'Vidas: ' + vidavalor + "/3", { fontFamily: 'MinimalFont5x7',fontSize: '30px', fill: '#EBED24' });
         vidastext.scrollFactorX = 0;
-  
-  
-  
+       
         //balas derecha player
         Bala = new Phaser.Class({
 
@@ -292,6 +330,8 @@ class scene4 extends Phaser.Scene {
         this.physics.add.collider(player, platforms);
         this.physics.add.collider(enemigos,platforms);
         this.physics.add.collider(medallas,platforms);
+        this.physics.add.collider(vidas,platforms);
+        this.physics.add.collider(powerup,platforms);
         this.physics.add.collider(informacion,platforms);
         this.physics.add.collider(platforms,misiles,this.destruccionmisil,this.plataformarota,null,this);
     
@@ -299,6 +339,8 @@ class scene4 extends Phaser.Scene {
         this.physics.add.collider(player, piso);
         this.physics.add.collider(enemigos,piso);
         this.physics.add.collider(medallas,piso);
+        this.physics.add.collider(powerup,piso);
+        this.physics.add.collider(vidas,piso);
         this.physics.add.collider(informacion,piso);
 
         //bala desaparece al tocar plataformas o piso
@@ -310,6 +352,8 @@ class scene4 extends Phaser.Scene {
         this.physics.add.collider(balas3, piso, this.destruirbala3piso, null, this);
         //misil mata pj
         this.physics.add.collider(player, misiles, this.hitmisil, null, this);
+        //bala mara pj
+        this.physics.add.collider(player,balas3,this.hitbala,null,this);
         //enemigo muere
         this.physics.add.collider(enemigos, balas, this.matarenemigo, null, this);
         this.physics.add.collider(enemigos, balas2, this.matarenemigo, null, this);
@@ -324,13 +368,14 @@ class scene4 extends Phaser.Scene {
         this.respawn1=0;
         
 
- 
+       tiempoText = this.add.text(100, 5, 'Tiempo: '+tiempoini, {  fontFamily: 'MinimalFont5x7',fontSize: '30px', fill: '#EBED24' });
+       tiempoEvent = this.time.addEvent({ delay: 1000, callback: this.onSecond, callbackScope: this, loop: true });
 
  }
 
  update (time, delta)
  {
-
+  
      if (cursors.left.isDown)
      {
          player.setVelocityX(-160);
@@ -358,7 +403,7 @@ class scene4 extends Phaser.Scene {
         {
          if (spaceBar.isDown && time > lastFired)
          {
-     
+           sfxdisp.play();
            var bullet = balas.get();
      
            if (bullet)
@@ -373,6 +418,7 @@ class scene4 extends Phaser.Scene {
         {
          if (spaceBar.isDown && time > lastFired2)
          {
+           sfxdisp.play();
            var bullet2 = balas2.get();
      
            if (bullet2)
@@ -390,8 +436,8 @@ class scene4 extends Phaser.Scene {
             if (dist <= 200)
             {
             if (time > lastFired2)
+                
                 var bullet3 = balas3.get();
-    
                 if (bullet3)
                 { 
                     bullet3.disparo(child.x, child.y - 10);
@@ -403,22 +449,30 @@ class scene4 extends Phaser.Scene {
 
      if (time > this.respawn) {
         this.nuevomisil();
-        this.respawn += 1800000000;
+        this.respawn += 7000;
     }
 
-    if(infovalor==v) {
+    if(infovalor==v1) {
         this.gameWin()
     }
 
     if(vidavalor==0){
         this.gameOver()
     }
+
+
+   
+   
+   
+
+
     
  }
  
 
 
     juntarmedallas (player, medallas) {
+        sfxmed.play();
         medallas.disableBody(true, true);
 
         //  puntaje
@@ -429,13 +483,54 @@ class scene4 extends Phaser.Scene {
     }
 
     juntarinfo (player, informacion) {
+        sfxinfo.play();
         informacion.disableBody(true, true);
 
         //  puntaje
         infovalor += 1;
-        infotext.setText('Informacion: ' + infovalor + "/" + v);
+        infotext.setText('Informacion: ' + infovalor + "/" + v1);
         infotext.scrollFactorX= 0;  
     
+    }
+    juntarvida(player,vidas){
+        sfxvida.play();
+        vidas.disableBody(true,true);
+         vidavalor+=1      
+         vidastext.setText('Vidas: ' + vidavalor + "/3");
+         vidastext.scrollFactorX= 0;
+         player.setTint(0xffffff);
+
+         this.vidamax();
+    }   
+    
+    vidamax(){
+        if(vidavalor > 3){
+            vidavalor = 3;
+            vidastext.setText('Vidas: ' + vidavalor + "/3");
+        
+        }
+        
+    }
+
+
+    juntarpower(player,powerup){
+        sfxvida.play();
+        powerup.disableBody(true,true);
+         tiempoini+=10      
+         tiempoText.setText('Tiempo: ' + tiempoini);
+         tiempoText.scrollFactorX= 0;
+         player.setTint(0xffffff);
+
+         this.tiempomax();
+    }  
+    
+    tiempomax(){
+        if(tiempoini > 35){
+            tiempoini = 35;
+            vidastext.setText('Tiempo: ' + tiempoini);
+        
+        }
+        
     }
 
     nuevomisil(){
@@ -452,12 +547,22 @@ class scene4 extends Phaser.Scene {
   
     hitmisil(player,misil){
         misil.disableBody(true, true);
-        vidavalor-=1
+        vidavalor-=vidavalor
         vidastext.setText('Vidas: ' + vidavalor + "/3");
         vidastext.scrollFactorX= 0;
         //this.gameOver()
         
     }
+
+    hitbala(player,bala3){
+        sfxdaño.play();
+        bala3.destroy();
+        vidavalor-=1
+        vidastext.setText('Vidas: ' + vidavalor + "/3");
+        vidastext.scrollFactorX= 0;
+        player.setTint(0xff0000);
+    }
+    
 
     destruccionmisil(platforms,misiles){
         misiles.disableBody(true,true);
@@ -498,25 +603,53 @@ class scene4 extends Phaser.Scene {
 
 
     matarenemigo(bala,enemigos){
+        sfxmuerten.play();
         enemigos.disableBody(true,true);
         enemigos.destroy();
         bala.destroy();
     }
 
-    generarinfo(){
-        var x= setPosition(enemigo)
-        var info= informacion.create(x,"informacion")
-        info.setBounce(0.2);
-        info.setCollideWorldBounds(true);
-        info.allowGravity = true;
-
+    matarenemigo2(bala2,enemigos){
+        sfxmuerten.play();
+        enemigos.disableBody(true,true);
+        enemigos.destroy();
+        bala2.destroy();
     }
 
+ 
 
+     onSecond() {
+         if ( ! gameOver)
+         {   
+            if (tiempoini <= 0) {
+                tiempoText.setText('Tiempo: 0 ');
+                this.scene.pause()
+                this.gameOver()
+             } 
+             else{   
+             tiempoini = tiempoini -= 1; // One second
+             tiempoText.setText('Tiempo: ' + tiempoini);
+             tiempoText.scrollFactorX= 0;
+             }     
+         }
+
+     }
+
+    musicaysfx(){
+        musica = this.sound.add("musican1", {volume: 0.5, loop: true});
+        musica.play();
+        sfxmed = this.sound.add("sonidomedalla", {volume: 0.3});
+        sfxinfo = this.sound.add("sonidoinformacion", {volume: 0.3});
+        sfxvida = this.sound.add("sonidovidanueva", {volume: 0.3});
+        sfxdaño = this.sound.add("sonidodaño", {volume: 0.3});
+        sfxdisp = this.sound.add("sonidodisparo", {volume: 0.3});
+        sfxmuerten = this.sound.add("sonidomuerteenemigo", {volume: 0.5});
+    }
 
     gameWin(){
-        gameWin=true
-        this.physics.pause()
+        musica.stop();
+        gameWin = true;
+        this.physics.pause();
         this.scene.start("juegocompleto")
     }
 
@@ -524,9 +657,10 @@ class scene4 extends Phaser.Scene {
 
 
     gameOver() {        
+        musica.stop();
         gameOver = true;
         this.physics.pause();
-        game.scene.stop("nivel2")
+      //  game.scene.stop("juego")
         
         this.scene.start('nivelperd')
       
